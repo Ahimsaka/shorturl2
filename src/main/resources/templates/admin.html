@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Admin</title>
+</head>
+<body>
+Admin
+<p>
+    <span>List of URLs</span>
+</p>
+<div th:if="${ not#lists.isEmpty(urls)}">
+    <table>
+        <tr>
+            <th>Extension</th>
+            <th>URL</th>
+            <th>Hits</th>
+        </tr>
+        <tr th:each="url : ${urls}">
+            <td><a href="#" th:href="'/url/' + ${url.extension}" th:text="${url.extension}"></a></td>
+            <td th:text="${url.url}"></td>
+            <td th:text="${url.hits}"></td>
+            <td>
+                <a th:href="@{'/delete/' + ${url.extension}}">Delete</a>
+            </td>
+        </tr>
+        </table>
+</div>
+</body>
+
+</html>
