@@ -19,6 +19,11 @@ public class User {
     private String password;
     private boolean enabled;
 
+    public User() {
+        super();
+        this.enabled = false;
+    }
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
