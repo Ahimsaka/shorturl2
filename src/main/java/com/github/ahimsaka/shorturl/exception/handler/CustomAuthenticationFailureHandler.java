@@ -1,4 +1,4 @@
-package com.github.ahimsaka.shorturl.security;
+package com.github.ahimsaka.shorturl.exception.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

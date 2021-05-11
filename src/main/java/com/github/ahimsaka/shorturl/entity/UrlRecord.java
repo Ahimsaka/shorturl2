@@ -5,6 +5,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.stereotype.Indexed;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
