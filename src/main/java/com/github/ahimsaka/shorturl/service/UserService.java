@@ -15,7 +15,11 @@ public interface IUserService {
 
     User saveRegisteredUser(User user);
 
+    User findByUsername(String username);
+
     void createVerificationToken(User user, String token);
+
+    void createPasswordResetTokenForUser(User user, String token);
 
     VerificationToken getVerificationToken(String verificationToken);
 

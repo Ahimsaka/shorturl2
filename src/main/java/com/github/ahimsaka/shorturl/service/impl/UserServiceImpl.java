@@ -1,10 +1,12 @@
 package com.github.ahimsaka.shorturl.service.impl;
 
 import com.github.ahimsaka.shorturl.dto.UserDto;
+import com.github.ahimsaka.shorturl.entity.PasswordResetToken;
 import com.github.ahimsaka.shorturl.entity.Role;
 import com.github.ahimsaka.shorturl.entity.User;
 import com.github.ahimsaka.shorturl.entity.VerificationToken;
 import com.github.ahimsaka.shorturl.exception.UserAlreadyExistException;
+import com.github.ahimsaka.shorturl.repository.PasswordResetTokenRepository;
 import com.github.ahimsaka.shorturl.repository.RoleRepository;
 import com.github.ahimsaka.shorturl.repository.UserRepository;
 import com.github.ahimsaka.shorturl.repository.VerificationTokenRepository;
@@ -30,6 +32,8 @@ public class UserService implements IUserService {
     private RoleRepository roleRepository;
     @Autowired
     private VerificationTokenRepository verificationTokenRepository;
+    @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -59,6 +63,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
     public VerificationToken getVerificationToken(String verificationToken) {
         return verificationTokenRepository.findByToken(verificationToken);
     }
@@ -72,6 +81,12 @@ public class UserService implements IUserService {
     public void createVerificationToken(User user, String token) {
         VerificationToken myToken = new VerificationToken(token, user);
         verificationTokenRepository.save(myToken);
+    }
+
+    @Override
+    public void createPasswordResetTokenForUser(User user, String token) {
+        PasswordResetToken myToken = new PasswordResetToken(token, user);
+        passwordResetTokenRepository.save(myToken);
     }
 
     @Override
